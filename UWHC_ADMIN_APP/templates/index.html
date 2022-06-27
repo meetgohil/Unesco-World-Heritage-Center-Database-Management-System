@@ -1,0 +1,221 @@
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/unesco_logo.png' %}"/>
+
+    <title>UNESCO World Heritage Center Database</title>
+    <style>
+        body {
+            background-color:/*lightgray*/ honeydew;  
+            font-family: Arial,Verdana,sans-serif;
+            font-size: 0.83em;
+            margin: 0;
+            line-height: 17px;
+        }
+        a:link {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:visited {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        .div {
+            display:block;
+        }
+        .allside {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            list-style-type: none;
+            padding-left: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0;
+            margin-left: 30px;
+            margin-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .g33 {
+            width: 33%;
+        }
+        .allleft {
+            float: left;
+            margin-left: 100px;
+        }
+        .inside {
+            width: 80%;
+            height: 172px;
+            margin: 10px 0px 10px 0px;
+            padding: 10px 0px 0px 30px;
+            background-color: /*#eee;*/ gainsboro;
+            border-radius: 20px;
+        }
+        .allmid {
+            float: right;
+            margin-right: 100px;
+        }
+        .allright {
+            float:right;
+        }
+        input[type=checkbox] {
+            border:none;
+            vertical-align:middle;
+            width: 1.1em;
+            height: 1.1em;
+            margin: 2px 4px 4px 0;
+            padding: 0;
+        }
+        input[type=radio] {
+            border:none;
+            vertical-align:middle;
+            width: 1.1em;
+            height: 1.1em;
+            margin: 2px 4px 4px 0;
+            padding: 0;
+            cursor: default;
+            appearance: auto;
+        }
+        .searchsite {
+            padding:13%;
+        }
+        .searchbutton {
+            height:40px;
+            width:90px;
+            font-size:15px;
+        }
+        .searchbutton:hover {
+            background-color: gainsboro;
+        }
+        tr:hover {
+            background-color: gainsboro;
+        }
+        .table_setup{
+            text-align: center;
+            margin: 0px 30px 0px 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1 style="text-align:center; padding-left:140px;"><a style="color:black;" href="{% url 'homepage' %}"> UNESCO World Heritage Center Database</a><span><a style="float:right; font-size:0.7em; padding-right:10px;" href="{% url 'login' %}">Admin log-in</a></span></h1>
+        <hr/>
+        <hr/>
+    </center>
+    <br>
+    <form method="POST" action="{% url 'search-site' %}">
+        {% csrf_token %}
+        <div class="allside linearize-level-1">
+        
+            <!-- <div class="g33 allleft">
+                <div class="inside">
+                    <h3>Display all by</h3>
+                    <div style="font-size: 14px; line-height: 2">
+                        <input type="radio" id="country" name="query" value="country">
+                        <label for="c">Country</label><br>  
+                        <input type="radio" id="region" name="query" value="region">
+                        <label for="r">Region</label><br>
+                        <input type="button" value="Clear" onclick="Clear();">
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="g33 allleft">
+                <div class="inside">
+                    <h3>Category</h3>
+                    <div>
+                        <input type="checkbox" id="cult" name="query" value="Cultural">
+                        <label for="cult"> Cultural</label><br>
+                        <input type="checkbox" id="nat" name="query" value="Natural">
+                        <label for="nat"> Natural</label><br>
+                        <input type="checkbox" id="mix" name="query" value="Mixed">
+                        <label for="mix"> Mixed</label><br>
+                        <input type="checkbox" id="out" name="query" value="Outstanding Universal Value"> 
+                        <label for="out"> Outstanding Universal Value</label><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="g33 allmid">
+                <div class="inside">
+                    <h3>Region</h3>
+                    <div>
+                        <input type="checkbox" id="africa" name="query" value="Africa">
+                        <label for="africa"> Africa</label><br>
+                        <input type="checkbox" id="arab" name="query" value="Arab States">
+                        <label for="arab"> Arab States</label><br>
+                        <input type="checkbox" id="asia" name="query" value="Asia and the Pacific">
+                        <label for="asia"> Asia and the Pacific</label><br>
+                        <input type="checkbox" id="europe" name="query" value="Europe and North America">
+                        <label for="europe"> Europe and North America</label><br>
+                        <input type="checkbox" id="latin" name="query" value="Latin America and the Caribbean">
+                        <label for="latin"> Latin America and the Caribbean</label><br>
+                    </div>
+                </div>
+            </div>
+        
+            <script>    
+                function Clear()
+                {    
+                    clearRadioGroup("displayby");
+                }
+
+                function clearRadioGroup(GroupName)
+                {
+                    var ele = document.getElementsByName(GroupName);
+                    for(var i=0;i<ele.length;i++)
+                    ele[i].checked = false;
+                }
+            </script>
+            
+        </div>
+        <center style=" margin:20px 0px 10px 0px;"> 
+            <button class="searchbutton" type="submit">Search</button>
+        </center>
+    </form>
+    <br>
+    <center>
+        <table class="table_setup" border="1">
+            <tr>
+                <th>Site ID</th>
+                <th>Site name</th>
+                <th>Address</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Area</th>
+                <th>Country Code</th>
+                <th>Category</th>
+                <th>Buffer Zone</th>
+                <th>Historical Detail</th>
+                <th>Ownership</th>
+                <th>Institute ID</th>
+            </tr> 
+            {% for result in data %} 
+            <tr> 
+                <td>{{result.s_id}}</td>
+                <td>{{result.site_name}}</td>
+                <td>{{result.address}}</td>
+                <td>{{result.latitude}}</td>
+                <td>{{result.longitude}}</td>
+                <td>{{result.area}}</td>
+                <td>{{result.country_code}}</td>
+                <td>{{result.category}}</td>
+                <td>{{result.buffer_zone}}</td>
+                <td>{{result.historical_detail}}</td>
+                <td>{{result.ownership}}</td>
+                <td>{{result.institute_id}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!--editsite.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNESCO</title>
+    <style>
+        body {
+            background-color:honeydew;  
+            font-family: Arial,Verdana,sans-serif;
+            font-size: .93em;
+            margin: 0;
+            line-height: 17px;
+        }
+        a:link {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:visited {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        .table_setup{
+            text-align: center;
+            width: 40%;
+            margin: 0px 0px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <p><b style="font-size:2em; padding-left:70px; text-align:center;">Edit in Site Database</b>
+            <span><a style="font-size:1.3em; float:right; padding-right:20px;" href="{% url 'homepage' %}">Log out</a></span></p>
+        <hr/>
+        <br>
+        <a style="font-size:1.4em;" href="{% url 'showsite' %}">Back</a> 
+        <br>
+        <br>
+        <form method="POST" action="/updates/{{SiteModel.s_id}}">
+            {% csrf_token %}
+        <table class="table_setup" border="1">
+            <tr>
+                <td>Site id</td>
+                <td><input type="text" name="s_id" value="{{SiteModel.s_id}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Site name</td>
+                <td><input type="text" name="site_name" value="{{SiteModel.site_name}}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" value="{{SiteModel.address}}"></td>
+            </tr>
+            <tr>
+                <td>Latitude</td>
+                <td><input type="text" name="latitude" value="{{SiteModel.latitude}}"></td>
+            </tr>
+            <tr>
+                <td>Longitude</td>
+                <td><input type="text" name="longitude" value="{{SiteModel.longitude}}"></td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td><input type="text" name="area" value="{{SiteModel.area}}" readonly></td>
+            </tr>
+            <tr>
+                <td>Country Code</td>
+                <td><input type="text" name="country_code" value="{{SiteModel.country_code}}"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td><input type="text" name="category" value="{{SiteModel.category}}"></td>
+            </tr>
+            <tr>
+                <td>Buffer Zone</td>
+                <td><input type="text" name="buffer_zone" value="{{SiteModel.buffer_zone}}"></td>
+            </tr>
+            <tr>
+                <td>Historical Detail</td>
+                <td><input type="text" name="historical_detail" value="{{SiteModel.historical_detail}}"></td>
+            </tr>
+            <tr>
+                <td>Ownership</td>
+                <td><input type="text" name="ownership" value="{{SiteModel.ownership}}"></td>
+            </tr>
+            <tr>
+                <td>Institute ID</td>
+                <td><input type="text" name="institute_id" value="{{SiteModel.institute_id}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update Record"></td>
+                <td>
+                    {% if messages %}
+                    {% for mes in messages %}
+                    <b style="color:green;">{{mes}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

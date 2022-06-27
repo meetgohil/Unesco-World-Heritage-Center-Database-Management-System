@@ -1,0 +1,76 @@
+<!--institute.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNESCO World Heritage Center Database</title>
+    <!--<link rel="icon" href="unesco_logo.png" type="image/png" sizes="16x16">-->
+    <style>
+        body {
+            background-color:honeydew;  
+            font-family: Arial,Verdana,sans-serif;
+            font-size: .93em;
+            margin: 0;
+            line-height: 17px;
+        }
+        a:link {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:visited {
+            color:blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        tr:hover {
+            background-color: gainsboro;
+        }
+        .table_setup{
+            text-align: center;
+            width: 90%;
+            margin: 0px 0px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <p><b style="font-size:2em; padding-left:80px; text-align:center;">Institute Database</b>
+            <span><a style="font-size:1.3em; float:right; padding-right:20px;" href="{% url 'homepage' %}">Log out</a></span></p>
+        <!--<div id="logo">
+        <a target="_blank" href="https://whc.unesco.org">
+            <img class="headphoto" src="unescoall.png" alt="unesco education, science and culture"> 
+        </a>
+        </div>-->
+        <hr/>
+        <hr/>
+        <br>
+        <a style="font-size:1.4em;" href="{% url 'insertinst' %}">Add new Institute</a>
+        <a style="text-align:right; margin-right:20px; margin-left:80px; font-size:1.4em;" href="{% url 'adminlogin' %}">Back</a> 
+        <br>
+        <br>
+        <table class="table_setup" border="1">
+            <tr>
+                <th>Institute id</th>
+                <th>Institute name</th>
+                <th>Officer</th>
+                <th>Address</th>
+                <th>Contact</th>
+            </tr> 
+            {% for result in data%} 
+            <tr> 
+                <td>{{result.institute_id}}</td>
+                <td>{{result.institute_name}}</td>
+                <td>{{result.officer}}</td>
+                <td>{{result.address}}</td>
+                <td>{{result.contact}}</td>
+                <td><a href="edit/{{result.institute_id}}">Edit</a></td>
+                <td><a href="{% url 'delinst' result.institute_id %}" onclick = "return confirm('Are you sure you want to delete the record?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

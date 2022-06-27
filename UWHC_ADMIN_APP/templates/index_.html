@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNESCO World Heritage Center Database</title>
+    <link rel="icon" href="unesco_logo.png" type="image/png" sizes="16x16">  
+    <style>
+        .headphoto {
+            margin-top:20px;
+            margin-left:20px;
+            margin-bottom: 20px;
+            float:left;
+            width:14%;
+            height:14%;
+        }
+        .headphoto:hover {
+            height:14.5%;
+            width:14.5%;
+            border: solid gray;
+        }
+        body {
+            background-color:lightgray;  
+            font-family: Arial,Verdana,sans-serif;
+            font-size: .83em;
+            margin: 0;
+            line-height: 17px;
+        }
+        #logo { 
+            position:fixed; 
+            top:0; 
+            left:0; 
+        } 
+        .div {
+            display:block;
+        }
+        .allside {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            list-style-type: none;
+            padding-left: 0;
+            padding-top: 5%;
+            padding-bottom: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .g33 {
+            width: 33%;
+        }
+        .allleft {
+            float: left;
+            margin-left: 15px;
+        }
+        .leftside {
+            width: 96.655%;
+            background-color: #eee;
+            padding: 0 5px 0 0;
+        }
+        .allmid {
+            float: left;
+            margin: 0;
+        }
+        .midside {
+            width: 96%;
+            background-color: #eee;
+            padding: 0 5px;
+        }
+        .allright {
+            float:left;
+            margin: 0;
+        }
+        .rightside {
+            width: 96%;
+            background-color: #eee;
+            padding: 0 0 0 5px;
+        }
+        .category {
+            padding-top:2px;
+            padding-left:15px;
+            padding-bottom:15px;
+        }
+        input[type=checkbox] {
+            border:none;
+            vertical-align:middle;
+            width: 1.1em;
+            height: 1.1em;
+            margin: 2px 4px 4px 0;
+            padding: 0;
+        }
+        input[type=radio] {
+            border:none;
+            vertical-align:middle;
+            width: 1.1em;
+            height: 1.1em;
+            margin: 2px 4px 4px 0;
+            padding: 0;
+            cursor: default;
+            appearance: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">UNESCO World Heritage Center Database</h1>
+    <div id="logo">
+    <a target="_blank" href="https://whc.unesco.org">
+        <img class="headphoto" src="unescoall.png" alt="unesco education, science and culture"> 
+    </a>
+    </div>
+    <br>
+    <br>
+    <form>
+    <div class="allside linearize-level-1">
+        <div class="g33 allleft">
+            <div class="leftside">
+                <div class="category">
+                    <h3>Site category</h3>
+                    <div>
+                        <input type="checkbox" id="cult" name="sitecategory" value="cultural">
+                        <label for="cult"> Cultural</label><br>
+                        <input type="checkbox" id="nat" name="sitecategory" value="natural">
+                        <label for="nat"> Natural</label><br>
+                        <input type="checkbox" id="mix" name="sitecategory" value="mixed">
+                        <label for="mix"> Mixed</label><br>
+                        <input type="checkbox" id="out" name="sitecategory" value="Outstanding Value"> 
+                        <label for="out"> Outstanding Value</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="g33 allmid">
+            <div class="midside">
+                <div class="category">
+                    <h3>Region</h3>
+                    <div>
+                        <input type="checkbox" id="africa" name="siteregion" value="africa">
+                        <label for="africa"> Africa</label><br>
+                        <input type="checkbox" id="arab" name="siteregion" value="arab">
+                        <label for="arab"> Arab States</label><br>
+                        <input type="checkbox" id="asia" name="siteregion" value="asia">
+                        <label for="asia"> Asia and the Pacific</label><br>
+                        <input type="checkbox" id="europe" name="siteregion" value="europe">
+                        <label for="europe"> Europe and North America</label><br>
+                        <input type="checkbox" id="latin" name="siteregion" value="latin">
+                        <label for="latin"> Latin America and the Caribbean</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="g33 allright">
+            <div class="rightside">
+                <div class="category">
+                    <h3>Display all by</h3>
+                    <div>
+                        <input type="radio" id="c" name="displayby" value="country">
+                        <label for="c">Country</label><br>  
+                        <input type="radio" id="r" name="displayby" value="region">
+                        <label for="r">Region</label><br>
+                        <input type="button" value="Clear" onclick="Clear();">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>    
+            function Clear()
+            {    
+                clearRadioGroup("displayby");
+            }
+
+            function clearRadioGroup(GroupName)
+            {
+                var ele = document.getElementsByName(GroupName);
+                for(var i=0;i<ele.length;i++)
+                ele[i].checked = false;
+            }
+        </script>
+    </div>
+    </form>
+</body>
+</html>

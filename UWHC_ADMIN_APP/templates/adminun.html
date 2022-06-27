@@ -1,0 +1,83 @@
+<!--adminun.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNESCO World Heritage Center Database</title>
+    <!--<link rel="icon" href="unesco_logo.png" type="image/png" sizes="16x16">-->
+    <style>
+        body {
+            background-color:honeydew;  
+            font-family: Arial,Verdana,sans-serif;
+            font-size: .83em;
+            margin: 0;
+            line-height: 17px;
+        }
+        a:link {
+            color:blue;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        a:visited {
+            color:blue;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        table {
+            width: 600px;
+            margin: auto;
+            text-align: center;
+            table-layout: fixed;
+        }
+  
+        /* Applying css properties 
+        to table components */
+        table,
+        td,
+        tr {
+            padding: 12px;
+            background: rgb(245, 243, 243);
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 
+                'Lucida Sans Regular',
+                'Lucida Grande', 
+                'Lucida Sans Unicode',
+                Geneva, Verdana, sans-serif;
+        }
+        /* Apply hover effect to td */
+        td:hover {
+            background: gainsboro /*rgb(216, 214, 212)*/;
+        }
+    </style>
+    
+</head>
+<body>
+    <center>
+        <p><b style="font-size:2em; padding-left:70px; text-align:center;">Welcome Admin</b>
+        <span><a style="font-size:1.5em; float:right; padding-right:20px;" href="{% url 'homepage' %}">Log out</a></span></p>
+        <!--<div id="logo">
+        <a target="_blank" href="https://whc.unesco.org">
+            <img class="headphoto" src="unescoall.png" alt="unesco education, science and culture"> 
+        </a>
+        </div>-->
+        <hr/>
+        <hr/>
+    <br>
+    <table>
+        <tr>
+            <td><a href="{% url 'showinst' %}">Institute Database</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'showsite' %}">Site Database</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'showcountry'%}">Member Country</a></td>
+        </tr>
+    </table>
+    </center>
+</body>
+</html>
